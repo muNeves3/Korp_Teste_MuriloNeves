@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Korp.Faturamento.props" />
+</Project>
