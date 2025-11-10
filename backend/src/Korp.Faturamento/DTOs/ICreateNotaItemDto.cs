@@ -4,10 +4,10 @@ namespace Korp.Faturamento.DTOs
 {
     public class ICreateNotaItemDto
     {
-        [Required]
+        [Required(ErrorMessage ="ProdutoId é obrigatório")]
         public Guid ProdutoId { get; set; } 
 
-        [Range(1, int.MaxValue)]
+        [Range(1, int.MaxValue, ErrorMessage ="Quantidade deve ser maior que 1")]
         public int Quantidade { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace Korp.Faturamento.DTOs
 {
     public class ICreateNotaFiscalDto
     {
-        [Required]
+        [Required(ErrorMessage ="É necessário ter pelo menos 1 (um) item")]
         [MinLength(1)]
         public List<ICreateNotaItemDto> Itens { get; set; } = new();
     }

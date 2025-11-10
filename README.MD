@@ -94,5 +94,5 @@ dotnet run
 
 ### rotas da aplicação para testes:
 
-1. Korp.Estoque - Swagger: https://localhost:<porta_estoque>/swagger
-2. Korp.Faturamento Swagger: https://localhost:<porta_faturamento>/swagger
+1. Korp.Estoque - Swagger: https://localhost:5274/swagger
+2. Korp.Faturamento Swagger: https://localhost:7005/swagger

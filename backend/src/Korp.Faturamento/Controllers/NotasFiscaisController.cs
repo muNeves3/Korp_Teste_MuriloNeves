@@ -39,6 +39,7 @@ namespace Korp.Faturamento.Controllers
                         Quantidade = i.Quantidade
                     }).ToList()
                 })
+                .OrderBy(n => n.NumeroSequencial)
                 .ToListAsync();
 
             return Ok(notas);

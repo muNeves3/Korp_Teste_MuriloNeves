@@ -1,7 +1,6 @@
 ﻿using Korp.Estoque.Data;
 using Korp.Estoque.DTOs;
 using Korp.Estoque.Models;
-using Korp.Estoque.Errors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static Korp.Estoque.DTOs.ICreateProdutoDto;
@@ -42,7 +41,7 @@ namespace Korp.Estoque.Controllers
 
             if (produto == null)
             {
-                return new ProdutoNaoEncontradoError();
+                return NotFound(new ProdutoNaoEncontradoError("Produto não encontrado."));
             }
 
             var produtoDto = new IProdutoDto
