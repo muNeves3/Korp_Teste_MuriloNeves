@@ -26,12 +26,12 @@ namespace Korp.Faturamento.Controllers
         public async Task<ActionResult<IEnumerable<INotaFiscalDto>>> GetNotasFiscais()
         {
             var notas = await _context.NotasFiscais
-                .Include(n => n.Itens) 
+                .Include(n => n.Itens)
                 .Select(n => new INotaFiscalDto
                 {
                     Id = n.Id,
                     NumeroSequencial = n.NumeroSequencial,
-                    Status = n.Status.ToString(), 
+                    Status = n.Status.ToString(),
                     Itens = n.Itens.Select(i => new INotaItemDto
                     {
                         Id = i.Id,
@@ -56,7 +56,7 @@ namespace Korp.Faturamento.Controllers
             {
                 Id = Guid.NewGuid(),
                 NumeroSequencial = ultimoNumero + 1,
-                Status = StatusNotaEnum.Aberta 
+                Status = StatusNotaEnum.Aberta
             };
 
             foreach (var itemDto in createDto.Itens)
@@ -92,7 +92,6 @@ namespace Korp.Faturamento.Controllers
         public async Task<IActionResult> ImprimirNota(Guid id,
         [FromHeader(Name = "X-Idempotency-Key")] Guid? idempotencyKey)
         {
-            // --- 1. VALIDAÇÃO DE IDEMPOTÊNCIA ---
             if (idempotencyKey == null || idempotencyKey == Guid.Empty)
             {
                 return BadRequest(new { message = "O header 'X-Idempotency-Key' é obrigatório." });
