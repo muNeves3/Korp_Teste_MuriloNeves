@@ -172,3 +172,4 @@
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Faturamento/obj/Debug/net9.0/ref/Korp.Faturamento.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Faturamento/bin/Debug/net9.0/Korp.Contracts.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Faturamento/bin/Debug/net9.0/Korp.Contracts.pdb
+/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Faturamento/obj/Debug/net9.0/Korp.Faturamento.sourcelink.json

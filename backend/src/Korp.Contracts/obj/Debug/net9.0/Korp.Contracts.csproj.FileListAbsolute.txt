@@ -20,3 +20,4 @@
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/refint/Korp.Contracts.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.pdb
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/ref/Korp.Contracts.dll
+/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.sourcelink.json

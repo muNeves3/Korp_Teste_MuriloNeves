@@ -346,3 +346,4 @@
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.pdb
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.genruntimeconfig.cache
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/ref/Korp.Estoque.dll
+/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.sourcelink.json
