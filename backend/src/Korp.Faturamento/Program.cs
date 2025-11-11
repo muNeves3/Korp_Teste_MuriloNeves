@@ -19,8 +19,7 @@ builder.Services.AddMassTransit(x =>
             h.Password("guest");
         });
 
-        // 3. Esta linha mágica configura as filas e bindings
-        // para os consumidores que acabamos de registrar.
+        // configura as filas e bindings
         cfg.ConfigureEndpoints(context);
     });
 });
@@ -31,7 +30,13 @@ builder.Services.AddDbContext<FaturamentoDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -40,7 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.MapOpenApi();
 }
-
+app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

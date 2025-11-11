@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Korp.Faturamento")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2fd8ead75e91ece8f9ce784721ffb273765abe6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6147587c8132a3f664fb1a9e43a74100d914ee0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Korp.Faturamento")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Korp.Faturamento")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
