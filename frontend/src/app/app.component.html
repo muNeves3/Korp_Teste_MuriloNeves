@@ -1,40 +1,69 @@
-<div style="padding: 20px;">
-
+<div style="padding: 20px">
   <h1>Produtos</h1>
 
-  <button mat-raised-button color="primary" (click)="fetchProdutos()">
-    Carregar Produtos
-  </button>
+  <button mat-raised-button color="primary" (click)="fetchProdutos()">Carregar Produtos</button>
 
-  <hr style="margin-top: 20px; margin-bottom: 20px;">
+  <hr style="margin-top: 20px; margin-bottom: 20px" />
 
-  <div *ngIf="isLoading" style="text-align: center;">
+  <div *ngIf="isLoadingProdutos" style="text-align: center">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 
-  <div *ngIf="!isLoading">
-
+  <div *ngIf="!isLoadingProdutos">
     <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
-
       <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef> Código </th>
-        <td mat-cell *matCellDef="let p"> {{p.codigo}} </td>
+        <th mat-header-cell *matHeaderCellDef>Código</th>
+        <td mat-cell *matCellDef="let p">{{ p.codigo }}</td>
       </ng-container>
 
       <ng-container matColumnDef="descricao">
-        <th mat-header-cell *matHeaderCellDef> Descrição </th>
-        <td mat-cell *matCellDef="let p"> {{p.descricao}} </td>
+        <th mat-header-cell *matHeaderCellDef>Descrição</th>
+        <td mat-cell *matCellDef="let p">{{ p.descricao }}</td>
       </ng-container>
 
       <ng-container matColumnDef="saldo">
-        <th mat-header-cell *matHeaderCellDef> Saldo </th>
-        <td mat-cell *matCellDef="let p"> {{p.saldo}} </td>
+        <th mat-header-cell *matHeaderCellDef>Saldo</th>
+        <td mat-cell *matCellDef="let p">{{ p.saldo }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+  </div>
+</div>
 
+<div style="padding: 20px; margin-top: 30px; background-color: #f5f5f5">
+  <h1>Notas Fiscais</h1>
+
+  <button mat-raised-button color="primary" (click)="fetchNotasFiscais()">
+    Carregar Notas Fiscais
+  </button>
+
+  <hr style="margin-top: 20px; margin-bottom: 20px" />
+
+  <div *ngIf="isLoadingNotas" style="text-align: center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 
+  <div *ngIf="!isLoadingNotas">
+    <mat-list role="list">
+      <div *ngFor="let nota of notasFiscais">
+        <mat-list-item role="listitem">
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="imprimirNota(nota.id)"
+            [disabled]="nota.status !== 'Aberta'"
+          >
+            🖨️
+          </button>
+
+          <span style="margin-left: 10px">
+            <strong>Nº:</strong> {{ nota.numeroSequencial }} | <strong>Status:</strong>
+            {{ nota.status }} | <strong>Itens:</strong> {{ nota.itens.length }}
+          </span>
+        </mat-list-item>
+      </div>
+    </mat-list>
+  </div>
 </div>
