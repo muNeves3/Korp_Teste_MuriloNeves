@@ -12,6 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpHeaders } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +28,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    FormsModule,
+    MatCardModule,
+    MatSelectModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.css',
@@ -40,6 +46,18 @@ export class AppComponent {
   public isLoadingNotas = false;
 
   snackBar = inject(MatSnackBar);
+
+  public newProduto = {
+    codigo: '',
+    descricao: '',
+    saldo: 0
+  };
+
+  public newNotaItem = {
+    produtoId: '',
+    quantidade: 1
+  };
+  public newNotaItensList: any[] = [];
 
   fetchProdutos() {
     this.isLoadingProdutos = true;
@@ -112,5 +130,63 @@ export class AppComponent {
           });
         },
       );
+  }
+
+  createProduto() {
+    if (!this.newProduto.codigo || !this.newProduto.descricao) {
+      this.snackBar.open('Código e Descrição são obrigatórios.', 'Fechar', { duration: 3000 });
+      return;
+    }
+
+    this.http.post(`${environment.apiEstoqueUrl}/produtos`, this.newProduto)
+      .subscribe(response => {
+        this.snackBar.open('Produto criado com sucesso!', 'OK', { duration: 3000 });
+        this.fetchProdutos();
+        this.newProduto = { codigo: '', descricao: '', saldo: 0 };
+      }, error => {
+        console.error('Erro ao criar produto:', error);
+        this.snackBar.open(`Erro ao criar produto: ${error.error?.message || 'Erro.'}`, 'Fechar', { duration: 5000 });
+      });
+  }
+
+  addItemNaNota() {
+    if (!this.newNotaItem.produtoId || this.newNotaItem.quantidade <= 0) {
+      this.snackBar.open('Selecione um produto e uma quantidade válida.', 'Fechar', { duration: 3000 });
+      return;
+    }
+
+    const produtoSelecionado = this.produtos.find(p => p.id === this.newNotaItem.produtoId);
+
+    this.newNotaItensList.push({
+      produtoId: this.newNotaItem.produtoId,
+      quantidade: this.newNotaItem.quantidade,
+      descricao: produtoSelecionado.descricao
+    });
+
+    this.newNotaItem = { produtoId: '', quantidade: 1 };
+  }
+
+  createNotaFiscal() {
+    if (this.newNotaItensList.length === 0) {
+      this.snackBar.open('Adicione pelo menos um item à nota.', 'Fechar', { duration: 3000 });
+      return;
+    }
+
+    const payload = {
+      itens: this.newNotaItensList.map(item => ({
+        produtoId: item.produtoId,
+        quantidade: item.quantidade
+      }))
+    };
+
+    this.http.post(`${environment.apiFaturamentoUrl}/notasfiscais`, payload)
+      .subscribe(response => {
+        this.snackBar.open('Nota Fiscal criada com sucesso!', 'OK', { duration: 3000 });
+        this.fetchNotasFiscais();
+        this.newNotaItensList = [];
+      }, error => {
+        console.error('Erro ao criar nota:', error);
+        this.snackBar.open(`Erro ao criar nota: ${error.error?.message || 'Erro.'}`, 'Fechar', { duration: 5000 });
+      });
   }
 }

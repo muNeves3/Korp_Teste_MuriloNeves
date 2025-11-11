@@ -1,69 +1,135 @@
-<div style="padding: 20px">
-  <h1>Produtos</h1>
+<div style="padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
 
-  <button mat-raised-button color="primary" (click)="fetchProdutos()">Carregar Produtos</button>
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Estoque</mat-card-title>
+        <mat-card-subtitle>Produtos Disponíveis</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-raised-button color="primary" (click)="fetchProdutos()">
+          Carregar Produtos
+        </button>
+        <hr>
+        <div *ngIf="isLoadingProdutos" style="text-align: center;">
+          <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="!isLoadingProdutos">
+          <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef> Código </th>
+              <td mat-cell *matCellDef="let p"> {{p.codigo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="descricao">
+              <th mat-header-cell *matHeaderCellDef> Descrição </th>
+              <td mat-cell *matCellDef="let p"> {{p.descricao}} </td>
+            </ng-container>
+            <ng-container matColumnDef="saldo">
+              <th mat-header-cell *matHeaderCellDef> Saldo </th>
+              <td mat-cell *matCellDef="let p"> {{p.saldo}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-  <hr style="margin-top: 20px; margin-bottom: 20px" />
+    <mat-card style="margin-top: 20px;">
+      <mat-card-header>
+        <mat-card-title>Novo Produto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Código do Produto</mat-label>
+          <input matInput [(ngModel)]="newProduto.codigo">
+        </mat-form-field>
 
-  <div *ngIf="isLoadingProdutos" style="text-align: center">
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Descrição</mat-label>
+          <input matInput [(ngModel)]="newProduto.descricao">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Saldo Inicial</mat-label>
+          <input matInput type="number" [(ngModel)]="newProduto.saldo">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="createProduto()">Salvar Produto</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 
-  <div *ngIf="!isLoadingProdutos">
-    <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
-      <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef>Código</th>
-        <td mat-cell *matCellDef="let p">{{ p.codigo }}</td>
-      </ng-container>
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Faturamento</mat-card-title>
+        <mat-card-subtitle>Notas Fiscais Emitidas</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-raised-button color="primary" (click)="fetchNotasFiscais()">
+          Carregar Notas Fiscais
+        </button>
+        <hr>
+        <div *ngIf="isLoadingNotas" style="text-align: center;">
+          <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="!isLoadingNotas">
+          <mat-list role="list">
+            <div *ngFor="let nota of notasFiscais">
+              <mat-list-item role="listitem">
+                <button mat-icon-button color="accent" (click)="imprimirNota(nota.id)"
+                  [disabled]="nota.status !== 'Aberta'">
+                  🖨️
+                </button>
+                <span style="margin-left: 10px;">
+                  <strong>Nº:</strong> {{nota.numeroSequencial}} |
+                  <strong>Status:</strong> {{nota.status}} |
+                  <strong>Itens:</strong> {{nota.itens.length}}
+                </span>
+              </mat-list-item>
+            </div>
+          </mat-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-      <ng-container matColumnDef="descricao">
-        <th mat-header-cell *matHeaderCellDef>Descrição</th>
-        <td mat-cell *matCellDef="let p">{{ p.descricao }}</td>
-      </ng-container>
+    <mat-card style="margin-top: 20px;">
+      <mat-card-header>
+        <mat-card-title>Nova Nota Fiscal</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Itens da Nota:</strong></p>
+        <mat-list *ngIf="newNotaItensList.length > 0">
+          <mat-list-item *ngFor="let item of newNotaItensList">
+            {{item.descricao}} (Qtd: {{item.quantidade}})
+          </mat-list-item>
+        </mat-list>
 
-      <ng-container matColumnDef="saldo">
-        <th mat-header-cell *matHeaderCellDef>Saldo</th>
-        <td mat-cell *matCellDef="let p">{{ p.saldo }}</td>
-      </ng-container>
+        <hr>
+        <p><strong>Adicionar Item:</strong></p>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-  </div>
-</div>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Selecione o Produto</mat-label>
+          <mat-select [(ngModel)]="newNotaItem.produtoId">
+            <mat-option *ngFor="let p of produtos" [value]="p.id">
+              {{p.codigo}} (Saldo: {{p.saldo}})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-<div style="padding: 20px; margin-top: 30px; background-color: #f5f5f5">
-  <h1>Notas Fiscais</h1>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Quantidade</mat-label>
+          <input matInput type="number" [(ngModel)]="newNotaItem.quantidade">
+        </mat-form-field>
 
-  <button mat-raised-button color="primary" (click)="fetchNotasFiscais()">
-    Carregar Notas Fiscais
-  </button>
+        <button mat-button color="primary" (click)="addItemNaNota()">Adicionar Item</button>
+      </mat-card-content>
 
-  <hr style="margin-top: 20px; margin-bottom: 20px" />
-
-  <div *ngIf="isLoadingNotas" style="text-align: center">
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-  </div>
-
-  <div *ngIf="!isLoadingNotas">
-    <mat-list role="list">
-      <div *ngFor="let nota of notasFiscais">
-        <mat-list-item role="listitem">
-          <button
-            mat-icon-button
-            color="accent"
-            (click)="imprimirNota(nota.id)"
-            [disabled]="nota.status !== 'Aberta'"
-          >
-            🖨️
-          </button>
-
-          <span style="margin-left: 10px">
-            <strong>Nº:</strong> {{ nota.numeroSequencial }} | <strong>Status:</strong>
-            {{ nota.status }} | <strong>Itens:</strong> {{ nota.itens.length }}
-          </span>
-        </mat-list-item>
-      </div>
-    </mat-list>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="createNotaFiscal()">Salvar Nota Fiscal</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
