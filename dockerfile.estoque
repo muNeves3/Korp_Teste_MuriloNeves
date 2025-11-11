@@ -1,0 +1,23 @@
+# 1. Estágio de Build (SDK)
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY backend/Korp.sln .
+COPY backend/src/Korp.Estoque/Korp.Estoque.csproj backend/src/Korp.Estoque/
+COPY backend/src/Korp.Faturamento/Korp.Faturamento.csproj backend/src/Korp.Faturamento/
+COPY backend/src/Korp.Contracts/Korp.Contracts.csproj backend/src/Korp.Contracts/
+
+RUN dotnet restore "Korp.sln"
+
+COPY backend/ .
+WORKDIR "/src/backend/src/Korp.Estoque"
+RUN dotnet publish "Korp.Estoque.csproj" -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "Korp.Estoque.dll"]

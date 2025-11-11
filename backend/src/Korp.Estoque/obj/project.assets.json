@@ -5607,33 +5607,39 @@
     ]
   },
   "packageFolders": {
-    "/home/mumuzinho/.nuget/packages/": {}
+    "C:\\Users\\Administrador\\.nuget\\packages\\": {},
+    "D:\\VisualStudioSDKShared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/Korp.Estoque.csproj",
+      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Estoque\\Korp.Estoque.csproj",
       "projectName": "Korp.Estoque",
-      "projectPath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/Korp.Estoque.csproj",
-      "packagesPath": "/home/mumuzinho/.nuget/packages/",
-      "outputPath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/",
+      "projectPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Estoque\\Korp.Estoque.csproj",
+      "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
+      "outputPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Estoque\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\VisualStudioSDKShared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/mumuzinho/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/Korp.Contracts.csproj": {
-              "projectPath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/Korp.Contracts.csproj"
+            "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\Korp.Contracts.csproj": {
+              "projectPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\Korp.Contracts.csproj"
             }
           }
         }
@@ -5648,7 +5654,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -5702,7 +5708,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.110/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

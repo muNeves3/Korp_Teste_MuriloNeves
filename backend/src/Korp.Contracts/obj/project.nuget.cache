@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8W+FqU/abro=",
+  "dgSpecHash": "MPU4xyAv+hw=",
   "success": true,
-  "projectFilePath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/Korp.Contracts.csproj",
+  "projectFilePath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\Korp.Contracts.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
