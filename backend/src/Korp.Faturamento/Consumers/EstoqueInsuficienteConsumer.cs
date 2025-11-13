@@ -27,8 +27,6 @@ namespace Korp.Faturamento.Consumers
 
             if (nota != null)
             {
-                // A nota falhou. Damos um status de Rejeitada
-                // (ou poderíamos reverter para "Aberta" para o usuário corrigir)
                 nota.Status = StatusNotaEnum.Rejeitada;
                 await _context.SaveChangesAsync();
             }

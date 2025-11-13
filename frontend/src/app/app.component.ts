@@ -138,6 +138,11 @@ export class AppComponent {
       return;
     }
 
+    if(this.newProduto.saldo < 0) {
+      this.snackBar.open('Saldo não pode ser negativo.', 'Fechar', { duration: 3000 });
+      return;
+    }
+
     this.http.post(`${environment.apiEstoqueUrl}/produtos`, this.newProduto)
       .subscribe(response => {
         this.snackBar.open('Produto criado com sucesso!', 'OK', { duration: 3000 });

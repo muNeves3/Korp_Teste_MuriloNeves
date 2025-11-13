@@ -98,8 +98,6 @@ namespace Korp.Faturamento.Controllers
                 return BadRequest(new { message = "O header 'X-Idempotency-Key' é obrigatório." });
             }
 
-            // Verifica se essa chave já foi processada.
-            // Se sim, apenas retorne OK (a requisição foi um sucesso idempotente).
             var jaProcessado = await _context.IdempotencyKeys
                 .AnyAsync(k => k.Key == idempotencyKey.Value);
 
@@ -108,9 +106,8 @@ namespace Korp.Faturamento.Controllers
                 return Ok(new { message = "Requisição já processada." });
             }
 
-            // --- 2. VALIDAÇÃO DE NEGÓCIO ---
             var nota = await _context.NotasFiscais
-                .Include(n => n.Itens) // Importante: carregar os itens da nota
+                .Include(n => n.Itens) 
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             if (nota == null)
@@ -118,30 +115,21 @@ namespace Korp.Faturamento.Controllers
                 return NotFound(new { message = "Nota Fiscal não encontrada." });
             }
 
-            // REQUISITO: Não permitir a impressão de notas com status diferente de Aberta [cite: 36]
             if (nota.Status != StatusNotaEnum.Aberta)
             {
                 return BadRequest(new { message = "Nota não pode ser impressa (status atual: " + nota.Status + ")." });
             }
 
-            // --- 3. PROCESSAMENTO E TRANSAÇÃO ---
-            // Usamos uma transação para garantir que a Chave de Idempotência
-            // e a mudança de Status da Nota sejam salvas juntas (atomicamente).
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                // A. Salva a chave de idempotência
                 await _context.IdempotencyKeys.AddAsync(new IdempotencyKey { Key = idempotencyKey.Value });
 
-                // B. Atualiza o status da nota para "Processando"
-                // Isso cumpre o requisito de "exibir indicador de processamento" [cite: 34]
                 nota.Status = StatusNotaEnum.Processando;
 
-                // Salva as duas mudanças no banco
                 await _context.SaveChangesAsync();
 
-                // C. Prepara a mensagem para o RabbitMQ (Serviço de Estoque)
                 var evento = new NotaParaProcessarEvent
                 {
                     NotaFiscalId = nota.Id,
@@ -152,23 +140,14 @@ namespace Korp.Faturamento.Controllers
                     }).ToList()
                 };
 
-                // D. Publica a mensagem na fila
-                // O MassTransit garante que isso será entregue
                 await _publishEndpoint.Publish(evento);
 
-                // E. Confirma a transação
                 await transaction.CommitAsync();
 
-                // Retorna 202 Accepted: "Sua requisição foi aceita
-                // e está sendo processada em segundo plano."
                 return Accepted(new { message = "Nota enviada para processamento." });
             }
             catch (DbUpdateException ex)
             {
-                // Erro de concorrência: Duas requisições com a MESMA chave de idempotência
-                // chegaram ao "mesmo tempo". A primeira passou, a segunda falhou no
-                // "AddAsync(new IdempotencyKey...)" por violar a Primary Key.
-                // Isso é o esperado.
                 await transaction.RollbackAsync();
                 return Ok(new { message = "Requisição duplicada detectada e ignorada." });
             }

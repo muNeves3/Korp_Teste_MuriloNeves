@@ -347,3 +347,4 @@
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.genruntimeconfig.cache
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/ref/Korp.Estoque.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.sourcelink.json
+//wsl.localhost/Ubuntu-20.04/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Estoque/obj/Debug/net9.0/Korp.Estoque.sourcelink.json

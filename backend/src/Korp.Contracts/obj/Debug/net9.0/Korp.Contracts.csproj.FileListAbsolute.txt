@@ -9,6 +9,7 @@
 //wsl.localhost/Ubuntu-20.04/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/refint/Korp.Contracts.dll
 //wsl.localhost/Ubuntu-20.04/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.pdb
 //wsl.localhost/Ubuntu-20.04/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/ref/Korp.Contracts.dll
+//wsl.localhost/Ubuntu-20.04/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.sourcelink.json
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/bin/Debug/net9.0/Korp.Contracts.deps.json
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/bin/Debug/net9.0/Korp.Contracts.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/bin/Debug/net9.0/Korp.Contracts.pdb
@@ -16,8 +17,8 @@
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.AssemblyInfoInputs.cache
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.AssemblyInfo.cs
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.csproj.CoreCompileInputs.cache
+/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.sourcelink.json
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/refint/Korp.Contracts.dll
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.pdb
 /home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/ref/Korp.Contracts.dll
-/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/Debug/net9.0/Korp.Contracts.sourcelink.json

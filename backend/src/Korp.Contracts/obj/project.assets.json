@@ -8,31 +8,25 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Administrador\\.nuget\\packages\\": {},
-    "D:\\VisualStudioSDKShared\\NuGetPackages": {}
+    "/home/mumuzinho/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\Korp.Contracts.csproj",
+      "projectUniqueName": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/Korp.Contracts.csproj",
       "projectName": "Korp.Contracts",
-      "projectPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\Korp.Contracts.csproj",
-      "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\mumuzinho\\www\\Korp_Teste_MuriloNeves\\backend\\src\\Korp.Contracts\\obj\\",
+      "projectPath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/Korp.Contracts.csproj",
+      "packagesPath": "/home/mumuzinho/.nuget/packages/",
+      "outputPath": "/home/mumuzinho/www/Korp_Teste_MuriloNeves/backend/src/Korp.Contracts/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\VisualStudioSDKShared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/mumuzinho/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -51,7 +45,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -72,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.110/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

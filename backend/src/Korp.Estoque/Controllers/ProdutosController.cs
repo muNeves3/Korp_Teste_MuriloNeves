@@ -1,5 +1,6 @@
 ﻿using Korp.Estoque.Data;
 using Korp.Estoque.DTOs;
+using Korp.Estoque.Errors;
 using Korp.Estoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,11 @@ namespace Korp.Estoque.Controllers
                 Descricao = createDto.Descricao,
                 Saldo = createDto.Saldo
             };
+
+            if(await _context.Produtos.AnyAsync(p => p.Codigo == produto.Codigo))
+            {
+                return Conflict(new ProdutoCodigoDuplicadoError("Código de produto já existe."));
+            }
 
             await _context.Produtos.AddAsync(produto);
             await _context.SaveChangesAsync();

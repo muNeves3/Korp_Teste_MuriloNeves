@@ -21,7 +21,6 @@ namespace Korp.Faturamento.Consumers
 
             if (nota != null)
             {
-                // REQUISITO: Após finalização, atualizar o status da nota para Fechada [cite: 35]
                 nota.Status = StatusNotaEnum.Fechada;
                 await _context.SaveChangesAsync();
             }
